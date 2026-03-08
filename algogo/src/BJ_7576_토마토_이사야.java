@@ -1,0 +1,88 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+
+
+
+public class BJ_7576_토마토_이사야 {
+    static int M,N;
+    
+    static int[][] Tomato;
+    static Queue<int[]> MyQueue=new LinkedList<>();
+    public static void main(String[] args) throws IOException{
+        BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output=new StringBuilder();
+        StringTokenizer MN=new StringTokenizer(input.readLine());
+        N=Integer.parseInt(MN.nextToken());
+        M=Integer.parseInt(MN.nextToken());
+        Tomato=new int[M][N];
+        for(int i=0;i<M;i++){
+            StringTokenizer Ns=new StringTokenizer(input.readLine());
+            for(int j=0;j<N;j++){
+                Tomato[i][j]=Integer.parseInt(Ns.nextToken());
+            }
+        }
+        int result_day=TomatoBox(M,N);
+        for (int i=0;i<M;i++){
+            for (int j=0;j<N;j++){
+                if (Tomato[i][j]==0){
+                    result_day=-1;
+                    break;
+                }
+            }
+        }
+        output.append(result_day);
+        System.out.println(output);
+    }
+
+    static int TomatoBox(int M,int N){
+        int day=0;
+        int dx[]={0,0,-1,1};
+        int dy[]={-1,1,0,0};
+        //큐 생성 및 입력
+        for(int i=0;i<M;i++){
+            for(int j=0;j<N;j++){
+                if (Tomato[i][j]==1){
+                    int[] node={i,j};
+                    MyQueue.add(node);
+                }
+            }
+        }
+        boolean day_counted=false;
+        while(!MyQueue.isEmpty()){
+            int one_day_end=MyQueue.size();
+            for (int i=0;i<one_day_end;i++){
+                int[] node=MyQueue.poll();
+                for (int j=0;j<4;j++){
+                    if(makeTomato(node[0]+dx[j],node[1]+dy[j])){
+                        if (!day_counted){
+                            day_counted=true;
+                            day++;
+                        }
+                        int[] nextnode={node[0]+dx[j],node[1]+dy[j]};
+                        MyQueue.add(nextnode);
+                    }
+                }
+            }
+            day_counted=false;
+        }
+        return day;
+    }
+
+    static boolean makeTomato(int X,int Y){
+        if (X<0||Y<0||X>=M||Y>=N){
+            return false;
+        }
+        if (Tomato[X][Y]==0){
+            Tomato[X][Y]=1;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}

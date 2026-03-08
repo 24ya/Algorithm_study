@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+
+
+
+public class Main {
+    static int[][] Tomato;
+    public static void main(String[] args) throws IOException{
+        BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output=new StringBuilder();
+        int N=Integer.parseInt(input.readLine());
+        StringTokenizer TangHuRuStringTokenizer=new StringTokenizer(input.readLine());
+        if (N==1){
+            output.append(1);
+        }
+        int kind1,kind2=0;
+        int length=1;
+        kind1=Integer.parseInt(TangHuRuStringTokenizer.nextToken());
+        boolean Tic=true;
+        for (int i=1;i<N;i++){
+            int nextFruit=Integer.parseInt(TangHuRuStringTokenizer.nextToken());
+            if(kind1==nextFruit||kind2==nextFruit){
+                length++;
+            }else{
+                if(Tic){
+                    kind2=nextFruit;
+                    Tic=Tic^true;
+                } else{
+                    kind1=nextFruit;
+                    Tic=Tic^true;
+
+                }
+            }
+        }
+    }
+}
