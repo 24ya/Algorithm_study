@@ -19,4 +19,3 @@ public class Main {
         System.out.println(output);
     }
 }
-//https://github.com/24ya/Algorithm_study.git
