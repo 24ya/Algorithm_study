@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 
-public class Main {
+public class BJ_10992_별찍기17_이사야 {
     public static void main(String[] args) throws IOException{
         BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
         StringBuilder output=new StringBuilder();
