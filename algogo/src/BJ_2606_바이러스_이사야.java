@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 
-public class BJ_2606_바이러스{
+public class BJ_2606_바이러스_이사야{
 	static boolean[][] V;
 	static boolean[] visited;
 	static int N;
